@@ -1,7 +1,7 @@
 {% extends 'main/wrapper.html' %}
 {% load static %}
 {% block content %}
-
+ 
 <div class="container-fluid gtco-numbers-block">
     <div class="container">
         <svg width="100%" viewBox="0 0 1600 400">
@@ -35,38 +35,16 @@
 
         </svg>
         <div class="row">
+            {% for dta in data %}
             <div class="col-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">125</h5>
-                        <p class="card-text">Active Projects</p>
+                        <h5 class="card-title">{{ dta.number }}</h5>
+                        <p class="card-text">{{ dta.header }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">200</h5>
-                        <p class="card-text">Business Growth</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">530</h5>
-                        <p class="card-text">Completed Projects</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">941</h5>
-                        <p class="card-text">Happy Clients</p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -74,125 +52,44 @@
     <div class="container">
         <h2>What our customers say about us.</h2>
         <div class="owl-carousel owl-carousel1 owl-theme">
+            {% for work in workers %}
             <div>
-                <div class="card text-center"><img class="card-img-top" src="{% static 'images/customer1.jpg' %}"
+                <div class="card text-center"><img class="card-img-top" src="{% static work.avatar %}"
                         alt="">
                     <div class="card-body">
-                        <h5>Lisa Gally <br />
-                            <span> Project Manager </span>
+                        <h5>{{ work.first_name }} {{ work.last_name }}<br />
+                            <span> {{ work.duty }} </span>
                         </h5>
-                        <p class="card-text">“ Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-                            impedit quo minus id quod maxime placeat ” </p>
+                        <p class="card-text">{{ work.description }}</p>
                     </div>
                 </div>
             </div>
-            <div>
-                <div class="card text-center"><img class="card-img-top" src="{% static 'images/customer2.jpg' %}"
-                        alt="">
-                    <div class="card-body">
-                        <h5>Missy Limana<br />
-                            <span> Project Manager </span>
-                        </h5>
-                        <p class="card-text">“ Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-                            impedit quo minus id quod maxime placeat ” </p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="card text-center"><img class="card-img-top" src="{% static 'images/customer3.jpg' %}"
-                        alt="">
-                    <div class="card-body">
-                        <h5>Aana Brown<br />
-                            <span> Project Manager </span>
-                        </h5>
-                        <p class="card-text">“ Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-                            impedit quo minus id quod maxime placeat ” </p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="card text-center"><img class="card-img-top" src="{% static 'images/customer3.jpg' %}"
-                        alt="">
-                    <div class="card-body">
-                        <h5>Aana Brown<br />
-                            <span> Project Manager </span>
-                        </h5>
-                        <p class="card-text">“ Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-                            impedit quo minus id quod maxime placeat ” </p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
 <div class="container-fluid gtco-features-list">
     <div class="container">
         <div class="row">
+            {% for more in mores %}
             <div class="media col-md-6 col-lg-4">
-                <div class="oval mr-4"><img class="align-self-start" src="{% static 'images/quality-results.png' %}"
+                <div class="oval mr-4"><img class="align-self-start" src="{% static more.image %}"
                         alt=""></div>
                 <div class="media-body">
-                    <h5 class="mb-0">Quality Results</h5>
-                    Aliquam a nisl pulvinar, hendrerit arcu sed, dapibus velit. Duis ac quam id sapien vestibulum
-                    fermentum ac eu eros. Aliquam erat volutpat.
+                    <h5 class="mb-0">{{ more.header }}</h5>
+                    {{ more.description }}
                 </div>
             </div>
-            <div class="media col-md-6 col-lg-4">
-                <div class="oval mr-4"><img class="align-self-start" src="{% static 'images/analytics.png' %}" alt="">
-                </div>
-                <div class="media-body">
-                    <h5 class="mb-0">Analytics</h5>
-                    Aliquam a nisl pulvinar, hendrerit arcu sed, dapibus velit. Duis ac quam id sapien vestibulum
-                    fermentum ac eu eros. Aliquam erat volutpat.
-                </div>
-            </div>
-            <div class="media col-md-6 col-lg-4">
-                <div class="oval mr-4"><img class="align-self-start" src="{% static 'images/affordable-pricing.png' %}"
-                        alt=""></div>
-                <div class="media-body">
-                    <h5 class="mb-0">Affordable Pricing</h5>
-                    Aliquam a nisl pulvinar, hendrerit arcu sed, dapibus velit. Duis ac quam id sapien vestibulum
-                    fermentum ac eu eros. Aliquam erat volutpat.
-                </div>
-            </div>
-            <div class="media col-md-6 col-lg-4">
-                <div class="oval mr-4"><img class="align-self-start" src="{% static 'images/easy-to-use.png' %}" alt="">
-                </div>
-                <div class="media-body">
-                    <h5 class="mb-0">Easy To Use</h5>
-                    Aliquam a nisl pulvinar, hendrerit arcu sed, dapibus velit. Duis ac quam id sapien vestibulum
-                    fermentum ac eu eros. Aliquam erat volutpat.
-                </div>
-            </div>
-            <div class="media col-md-6 col-lg-4">
-                <div class="oval mr-4"><img class="align-self-start" src="{% static 'images/free-support.png' %}"
-                        alt=""></div>
-                <div class="media-body">
-                    <h5 class="mb-0">Free Support</h5>
-                    Aliquam a nisl pulvinar, hendrerit arcu sed, dapibus velit. Duis ac quam id sapien vestibulum
-                    fermentum ac eu eros. Aliquam erat volutpat.
-                </div>
-            </div>
-            <div class="media col-md-6 col-lg-4">
-                <div class="oval mr-4"><img class="align-self-start"
-                        src="{% static 'images/effectively-increase.png' %}" alt=""></div>
-                <div class="media-body">
-                    <h5 class="mb-0">Effectively Increase</h5>
-                    Aliquam a nisl pulvinar, hendrerit arcu sed, dapibus velit. Duis ac quam id sapien vestibulum
-                    fermentum ac eu eros. Aliquam erat volutpat.
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
 <div class="container-fluid gtco-logo-area my-5">
     <div class="container">
         <div class="row">
-            <div class="col"><img src="{% static 'images/logo1.png' %}" class="img-fluid" alt=""></div>
-            <div class="col"><img src="{% static 'images/logo2.png' %}" class="img-fluid" alt=""></div>
-            <div class="col"><img src="{% static 'images/logo3.png' %}" class="img-fluid" alt=""></div>
-            <div class="col"><img src="{% static 'images/logo4.png' %}" class="img-fluid" alt=""></div>
-            <div class="col"><img src="{% static 'images/logo5.png' %}" class="img-fluid" alt=""></div>
+            {% for image in images %}
+            <div class="col-2 mx-3"><img src="{% static image.logo %}" class="img-fluid" alt=""></div>
+            {% endfor %}
         </div>
     </div>
 </div>

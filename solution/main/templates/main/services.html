@@ -8,10 +8,7 @@
             <div class="col-lg-4">
                 <h2> Explore The Services<br />
                     We Offer For You </h2>
-                <p> Nunc sodales lobortis arcu, sit amet venenatis erat placerat a. Donec lacinia magna nulla,
-                    cursus
-                    impediet augue egestas id. Suspendisse dolor lectus, pellentesque quis tincidunt ac, dictum id
-                    neque. </p>
+                <p>Our company offers you a wide range of services, from advertising and marketing to graphic design.</p>
                 <a href="#">All Services <i class="fa fa-angle-right" aria-hidden="true"></i></a>
             </div>
             <div class="col-lg-8">
@@ -27,45 +24,26 @@
                 </svg>
                 <div class="row">
                     <div class="col">
+                        {% for dict in data_1 %}
                         <div class="card text-center">
-                            <div class="oval"><img class="card-img-top" src="{% static 'images/web-design.png' %}"
-                                    alt=""></div>
+                            <div class="oval"><img class="card-img-top" src="/static/{{ dict.image }}" alt=""></div>
                             <div class="card-body">
-                                <h3 class="card-title">Web Design</h3>
-                                <p class="card-text">Nullam quis libero in lorem accumsan sodales. Nam vel nisi
-                                    eget.</p>
+                                <h3 class="card-title">{{ dict.name }}</h3>
+                                <p class="card-text">{{ dict.text }}</p>
                             </div>
                         </div>
-                        <div class="card text-center">
-                            <div class="oval"><img class="card-img-top" src="{% static 'images/marketing.png' %}"
-                                    alt=""></div>
-                            <div class="card-body">
-                                <h3 class="card-title">Marketing</h3>
-                                <p class="card-text">Nullam quis libero in lorem accumsan sodales. Nam vel nisi
-                                    eget.</p>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <div class="col">
+                        {% for dict in data_2 %}
                         <div class="card text-center">
-                            <div class="oval"><img class="card-img-top" src="{% static 'images/seo.png' %}" alt="">
-                            </div>
+                            <div class="oval"><img class="card-img-top" src="/static/{{ dict.image }}" alt=""></div>
                             <div class="card-body">
-                                <h3 class="card-title">SEO</h3>
-                                <p class="card-text">Nullam quis libero in lorem accumsan sodales. Nam vel nisi
-                                    eget.</p>
+                                <h3 class="card-title">{{ dict.name }}</h3>
+                                <p class="card-text">{{ dict.text }}</p>
                             </div>
                         </div>
-                        <div class="card text-center">
-                            <div class="oval"><img class="card-img-top" src="{% static 'images/graphics-design.png' %}"
-                                    alt="">
-                            </div>
-                            <div class="card-body">
-                                <h3 class="card-title">Graphics Design</h3>
-                                <p class="card-text">Nullam quis libero in lorem accumsan sodales. Nam vel nisi
-                                    eget.</p>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
