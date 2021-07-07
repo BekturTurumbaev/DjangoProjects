@@ -159,7 +159,7 @@ class AboutView(LoginRequiredMixin, View):
         message = request.POST.get("message", "")
 
         try:
-            send_mail(subject, 'message', email, recipient_list=['brohorosh@gmail.com'])
+            send_mail(subject, message, email)
             messages.success(request, 'Message has been send successfully!')
         except BadHeaderError as e:
             messages.warning(request, f"Message can't be send because {e}")
