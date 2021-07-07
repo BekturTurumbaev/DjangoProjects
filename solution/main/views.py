@@ -1,7 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
+from .forms import CustomUserForm, LoginForm
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.mail import send_mail, BadHeaderError
 
-class HomeView(View):
+class MainView(View):
+    def get(self, request):
+        login_forms = LoginForm()
+        custom_user_form = CustomUserForm()
+        return render(request, template_name='main/home.html', context={'reg_form': custom_user_form, 'login_form': login_forms})
+
+    def post(self, request):
+        if request.POST.get('submit') == 'signup':
+            custom_user_form = CustomUserForm(request.POST)
+
+            if custom_user_form.is_valid():
+                custom_user_form.save()
+
+                messages.success(request, 'Registration success')
+                return render(request, template_name='main/home.html')
+            
+            error = '\n'.join([msg[0] for msg in tuple(custom_user_form.errors.values())])
+            messages.warning(request, error)
+            custom_user_form = CustomUserForm()
+            return render(request, template_name='main/home.html', context={'reg_form': custom_user_form})
+
+
+class HomeView(LoginRequiredMixin, View):
     tema1 = [{
         'header': 'We are a Creative Digital Agency & Marketing Experts',
         'description': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In rhoncus turpis nisl, vitae dictum mi semper convallis. Ut sapien leo, varius ac dapibus a, cursus quis ante.",
@@ -35,7 +61,7 @@ class HomeView(View):
     def get(self, request):
         return render(request, template_name="main/home.html", context={'avatars1': self.avatar1, 'avatars2': self.avatar2, 'temas': self.tema1,  'temas2': self.tema2})
 
-class AboutView(View): 
+class AboutView(LoginRequiredMixin, View): 
     about_start = [{
         'number': 125,
         'header': 'Active Projects'
@@ -127,17 +153,42 @@ class AboutView(View):
     def get(self, request):
         return render(request, template_name="main/about.html", context={'data': self.about_start, 'workers': self.worker, 'mores': self.more, 'images': self.advert_logo})
 
-class NewsView(View):
+    def post(self, request):
+        subject = f"Message from {request.user.first_name} {request.user.last_name}"
+        email = request.POST.get("email", "")
+        message = request.POST.get("message", "")
+
+        try:
+            send_mail(subject, 'message', email, recipient_list=['brohorosh@gmail.com'])
+            messages.success(request, 'Message has been send successfully!')
+        except BadHeaderError as e:
+            messages.warning(request, f"Message can't be send because {e}")
+
+        return redirect('about_view')
+
+class NewsView(LoginRequiredMixin, View):
     pictures = {1:'images/logo1.png', 2:'images/logo2.png', 3:'images/logo3.png', 4:'images/logo4.png', 5:'images/logo5.png'}
     data = [
-        {"image":"images/news1.jpg", 1:"Очки. Обыкновенные очки.", 2:"Эти очки состоавляют 2 очка: первое очко и второе очко. В линзах данных очков сы можем наблюдать, что этот \"программист\" использует Google Chrome. Земля ему пухом."}, 
-        {"image":"images/news2.jpg", 1:"Finger. Just a regular finger.", 2:"Это палец. С помощью него можно stick finger в уникальную навигационную панель, расположенную прямо в воздухе. А ещё этот палец умеет светиться, как фонарик. Разве не круто?."}, 
-        {"image":"images/news3.jpg", 1:"Компьютерный клуб...", 2:"Это компьютерный клуб 21-го века, где пацанчики могут рубиться в дотку, ксОчку, тунчики, в общем, стандартные игры гидроцефалов. Начинка компов: 2 гига, 2 ядра, игровая видеокарта и мониторы от Apple."}
+        {"image":"images/news1.jpg", 
+        'descriprion':"The world's biggest memory-chip and smartphone maker forecast operating profit of $11bn (£8bn) for the three months to the end of June. It said strong demand for memory chips had offset weaker sales of devices due to the shortage of components. A year ago, in the first few months of the pandemic, Samsung saw sales of products such as phones and TVs slump.",
+        'header': 'Tech giant Samsung Electronics has said it expects its quarterly profit to rise by 53%, amid a global chip shortage.'}, 
+        
+        {"image":"images/news2.jpg", 
+        'descriprion': "Incredibly powerful graphics card with TITAN-class performance At the heart of Ampere - the second generation NVIDIA RTX architecture - with double the performance of ray tracing and artificial intelligence technologies thanks to improved cores for ray tracing (RT), tensor cores and new streaming multiprocessors. The graphics card also features the G6X's impressive 24GB video memory designed to deliver an exceptional level of gaming.",
+        'header': "GEFORCE RTX 3090."}, 
+        
+        {"image":"images/news3.jpg", 
+        'descriprion':"Windows has always existed to be a stage for the world’s innovation. It’s been the backbone of global businesses and where scrappy startups became household names. The web was born and grew up on Windows. It’s the place where many of us wrote our first email, played our first PC game and wrote our first line of code. Windows is the place people go to create, to connect, to learn and to achieve – a platform over a billion people today rely on. ",
+        'header': "Introducing Windows 11."},
+       
+       {"image":"images/news4.jpg", 
+        'descriprion':"Intel has finally announced its new Intel Core processors of the 11th generation (Rocket Lake-S series). The architecture was updated for the first time in 5 years. The ancient Skylake was replaced by the modern Cypress Cove. The Rocket Lake-S family currently consists of almost two dozen models. The TDP level is from 35 to 125 watts. Cores — 6 or 8, the frequency of operation-up to 5.3 GHz. The new chips are compatible with both 500-series and 400-series motherboards.",
+        'header': "Intel Core processors of the 11th generation (Rocket Lake-S)are presented."}
         ]
     def get(self, request):
         return render(request, template_name="main/news.html", context={"pictures":self.pictures, "data":self.data})
 
-class ServicesView(View):
+class ServicesView(LoginRequiredMixin, View):
     data_1 = [
         {"image":"images/web-design.png", "name":"Web Design", "text":"Our company will be happy to help you with the design of the site."}, 
         {"image":"images/marketing.png", "name":"Marketing", "text":"We also create excellent bright and memorable advertising."}

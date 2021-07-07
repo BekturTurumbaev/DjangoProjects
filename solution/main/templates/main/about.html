@@ -52,15 +52,15 @@
     <div class="container">
         <h2>What our customers say about us.</h2>
         <div class="owl-carousel owl-carousel1 owl-theme">
-            {% for work in workers %}
+            {% for item in workers %}
             <div>
-                <div class="card text-center"><img class="card-img-top" src="{% static work.avatar %}"
+                <div class="card text-center"><img class="card-img-top" src="{% static item.avatar %}"
                         alt="">
                     <div class="card-body">
-                        <h5>{{ work.first_name }} {{ work.last_name }}<br />
-                            <span> {{ work.duty }} </span>
+                        <h5>{{ item.first_name }} {{ item.last_name }} <br />
+                            <span> {{ item.duty }} </span>
                         </h5>
-                        <p class="card-text">{{ work.description }}</p>
+                        <p class="card-text">{{ item.description }}</p>
                     </div>
                 </div>
             </div>
