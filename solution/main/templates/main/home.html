@@ -34,14 +34,14 @@
                 </div>
             </div>
             <div class="col-md-5">
-                {% for tema in temas %}
-                <h2> {{ tema.header }} </h2>
-                <p> {{ tema.description }} </p>
+                {% for topic in topics %}
+                <h2> {{ topic.header }} </h2>
+                <p> {{ topic.description }} </p>
                 <p>
-                    <small>{{ tema.description2 }}
+                    <small>{{ topic.description2 }}
                     </small>
                 </p>
-                <a href="#">{{ tema.button }} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <a href="#">{{ topic.button }} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                 {% endfor %}
             </div>
         </div>

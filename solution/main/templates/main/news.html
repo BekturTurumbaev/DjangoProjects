@@ -1,25 +1,18 @@
 {% extends 'main/wrapper.html' %}
 {% load static %}
 {% block content %}
-<div class="container-fluid gtco-logo-area">
-    <div class="container">
-        <div class="row text-center">
-            {% for picture in pictures.values %}
-            <div class="col"><img src="/static/{{picture}}" class="img-fluid" alt=""></div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
 <div class="container-fluid gtco-news" id="news">
     <div class="container">
-        <h2>Latest News & Articles</h2>
+        {% for text in texts %}
+        <h2> {{ text }} </h2>
+        {% endfor %}
         <div class="owl-carousel owl-carousel2 owl-theme">
-            {% for text in data %}
+            {% for data_text in data %}
             <div>
-                <div class="card text-center"><img class="card-img-top" src="{% static text.image %}" alt="">
+                <div class="card text-center"><img class="card-img-top" src="{% static data_text.image %}" alt="">
                     <div class="card-body text-left pr-0 pl-0">
-                        <h5>{{ text.header }}</h5>
-                        <p class="card-text">{{ text.descriprion }}</p>
+                        <h5>{{ data_text.header }}</h5>
+                        <p class="card-text">{{ data_text.descriprion }}</p>
                         <a href="#">READ MORE <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                     </div>
                 </div>

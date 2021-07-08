@@ -11,11 +11,7 @@
                     <stop offset="100%" stop-color="rgb(29,62,222)" stop-opacity="1" />
 
                 </linearGradient>
-
             </defs>
-            <!-- <clipPath id="clip-path3">
-
-                                      </clipPath> -->
 
             <path fill-rule="evenodd" fill="url(#PSgrad_03)"
                 d="M98.891,386.002 L1527.942,380.805 C1581.806,380.610 1599.093,335.367 1570.005,284.353 L1480.254,126.948 C1458.704,89.153 1408.314,59.820 1366.025,57.550 L298.504,0.261 C238.784,-2.944 166.619,25.419 138.312,70.265 L16.944,262.546 C-24.214,327.750 12.103,386.317 98.891,386.002 Z">
@@ -27,10 +23,8 @@
                 </path>
             </clipPath>
 
-            <!-- xlink:href for modern browsers, src for IE8- -->
             <image clip-path="url(#ctm)" xlink:href="{% static 'images/word-map.png' %}" height="800px" width="100%"
                 class="svg__image">
-
             </image>
 
         </svg>
@@ -50,7 +44,9 @@
 </div>
 <div class="container-fluid gtco-testimonials">
     <div class="container">
-        <h2>What our customers say about us.</h2>
+        {% for text in texts %}
+        <h2> {{text}} </h2>
+        {% endfor %}
         <div class="owl-carousel owl-carousel1 owl-theme">
             {% for item in workers %}
             <div>
