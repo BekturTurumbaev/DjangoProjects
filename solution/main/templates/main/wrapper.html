@@ -53,6 +53,7 @@
     `               {% elif not request.get_full_path == '/logout/' %}
 
                     <div class="m-2">
+                        <!-- Button trigger modal -->
                         <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#login"
                             style="border-radius: 50px; font-weight: bolder; background-color: rgb(4, 221, 120);">
                             <span class="mx-3">Login</span>
@@ -60,6 +61,7 @@
                     </div>
                     
                     <div class="m-2">
+                        <!-- Button trigger modal -->
                         <button type="button" class="btn btn-lg text-light" data-toggle="modal" data-target="#signup"
                         style="border-radius: 50px; font-weight: bolder; background-color: rgb(8, 225, 233);">
                         <span class="mx-3">Sign Up</span>
@@ -69,6 +71,8 @@
                 </div>
 
 
+
+                <!-- Modal -->
                 <div class="modal fade" id="login" data-backdrop="static" data-keyboard="false" tabindex="-1"
                     aria-labelledby="loginLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -101,6 +105,7 @@
                 </div>
 
 
+                <!-- Modal -->
                 <div class="modal fade" id="signup" data-backdrop="static" data-keyboard="false" tabindex="-1"
                     aria-labelledby="signupLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -132,8 +137,6 @@
             </div>
         </div>
     </nav>
-
-
     <div class="container-fluid gtco-banner-area">
         <div class="container">
             <div class="row">
@@ -152,6 +155,7 @@
     </div>
 
     {% block content %}{% endblock content %}
+
 
     <footer class="container-fluid mt-lg-5" id="gtco-footer">
         <div class="container">

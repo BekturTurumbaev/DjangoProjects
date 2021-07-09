@@ -2,6 +2,7 @@ from django.urls import path
 from .views import HomeView, AboutView, NewsView, ServicesView, MainView
 from .forms import LoginForm
 from django.contrib.auth.views import LoginView, LogoutView
+from .forms import CustomLoginForm
 
 urlpatterns = [
     path('', MainView.as_view(), name='main_page'),
