@@ -109,7 +109,7 @@
                                     <a class="dropdown-item" href="special-dishes.html">Вина</a>
                                 </div>
                             <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'feedbacks' %}">Отзывы</a>
+                                <a class="nav-link" href="{% url 'main:feedbacks' %}">Отзывы</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="team/">Повара</a>
@@ -126,12 +126,12 @@
                         <div class="d-flex flex-lg-row flex-column">
                             {% if user.is_authenticated %}
                             <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'reservation:my_reservations' %}">Мои Брони<span
+                                <a class="nav-link" href="">Мои Брони<span
                                         class="sr-only">(current)</span></a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'reservation:reservation' %}">Забронировать<span
+                                <a class="nav-link" href="">Забронировать<span
                                         class="sr-only">(current)</span></a>
                             </li>
 
