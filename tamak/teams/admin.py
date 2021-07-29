@@ -1,3 +1,5 @@
 from django.contrib import admin
+from django.db.models.fields import TextField
+from .models import Teams
 
-# Register your models here.
+admin.site.register(Teams)

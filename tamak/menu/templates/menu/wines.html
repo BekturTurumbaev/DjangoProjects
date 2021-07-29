@@ -1,0 +1,82 @@
+{% extends 'main/wrapper.html' %}
+{% load static %}
+{% block content %}
+
+
+<section id="gtco-special-dishes" class="bg-grey section-padding">
+    <div class="container">
+        <div class="section-content">
+            <div class="heading-section text-center">
+                <h2>
+                    <span class="subheading">
+                        Лучшие Вина
+                    </span>
+                </h2>
+            </div>
+            {% for wine in primary_wine %}
+            <div class="row mt-5">
+
+                <div class="col-lg-4 offset-lg-2 col-md-6 align-self-center mt-4 mt-md-0">
+                    <img src="{% static wine.image %}" alt="" class="img-fluid shadow w-100">
+                </div>
+
+                <div class="col-lg-4 col-md-6 align-self-center py-5 ml-5">
+                    <h2 class="special-number">0.</h2>
+                    <div class="dishes-text">
+                        <h3><span>{{ wine.name }}</span><br></h3>
+                        <p class="pt-3">{{ wine.types_sugar }} | {{ wine.types_color }}</p>
+                        <h3 class="special-dishes-price">{{ wine.price }} сом /0,75 л</h3>
+                        <a class="btn btn-outline-dark" href="{% url 'menu:wines-details' wine.pk %}">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section id="gtco-menu" class="section-padding">
+    <div class="container">
+        <div class="section-content">
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="heading-section text-center">
+                        <h2>
+                            <span class="subheading">
+                                Каталог
+                            </span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <div class="menu-wrap">
+                    <div class="heading-menu">
+                        <h3 class="text-center mb-5">Основные Вина</h3>
+                    </div>
+                    {% for wine_s in wines %}
+                    <div class="menus d-flex align-items-center">
+                        <div class="menu-img rounded-circle">
+                            <img class="img-fluid" src="{% static wine_s.image %}" alt="wine_photo">
+                        </div>
+                        <div class="text-wrap mx-5">
+                            <div class="row align-items-start">
+                                <div class="col-8">
+                                    <h4>{{ wine_s.name }}</h4>
+                                </div>
+                                <div class="col-4">
+                                    <h4 class="text-muted menu-price">{{ wine_s.price }} сом /0,75 л</h4>
+                                </div>
+                            </div>
+                            <p>{{ wine_s.body }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

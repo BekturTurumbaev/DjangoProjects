@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import PrimaryMeal, GeneralMeal, Wine
 
-# Register your models here.
+admin.site.register(PrimaryMeal)
+admin.site.register(GeneralMeal)
+admin.site.register(Wine)

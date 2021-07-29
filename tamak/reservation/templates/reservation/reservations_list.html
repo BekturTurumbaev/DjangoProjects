@@ -1,0 +1,73 @@
+{% extends 'main/wrapper.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-10 col-md-12 col-sm-12">
+            <div class="section-content">
+                <div class="heading-section text-center">
+                    <span class="subheading">
+                        <h2>
+                            История Бронирования
+                        </h2>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-7">
+            <div class="card text-center">
+                <img src="{{ user.user_profile.user_photo.url }}" alt="photo" style="width:100%; height: 350px;">
+                <div class="mt-2">
+                    <h1>{{ user.username }}</h1>
+                    <p class="title">{{ user.email }}</p>
+                    <p class="bg-dark w-100 text-light py-2 font-weight-bold">Всего Броней: {{ createreservationmodel_list|length }}
+                    </p>
+                    <div class="mb-3">
+                        <a class="btn btn-primary" href="">Изменить Профиль</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-12 col-sm-12 justify-content-center">
+            <div class="row">
+                {% if createreservationmodel_list|length > 0 %}
+                {% for reserv in createreservationmodel_list %}
+                <div class="col-lg-5 col-md-10 col-sm-10">
+                    <div class="card mt-2 mx-1 shadow-sm text-center">
+                        <div class="card-header">
+                            <h4 class="my-0 fw-normal">{{ reserv.client.username }}</h4>
+                        </div>
+                        <div class="card-body font-weight-bold" style="height: 120px;">
+                            <strong class="text-muted">Комментарий:</strong>
+                            <h6 class="card-title pricing-card-title mt-2">
+                                {{ reserv.comment }}
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li><span class="font-weight-bold">Время:</span> <strong>{{ reserv.time }}</strong>
+                                </li>
+                                <li><span class="font-weight-bold">Дата:</span> <strong>{{ reserv.date }}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="bg-dark w-100 text-light py-2">Количество: {{ reserv.amount_humans }}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="container">
+                    <div class="row text-center" style="height: 350px;">
+                        <p class="mx-auto" style="font-size: 250px; font-weight:bolder;">0
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -105,14 +105,14 @@
                                     Меню
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="special-dishes.html">Основные Блюда</a>
-                                    <a class="dropdown-item" href="special-dishes.html">Вина</a>
+                                    <a class="dropdown-item" href="{% url 'menu:meals' %}">Основные Блюда</a>
+                                    <a class="dropdown-item" href="{% url 'menu:wines' %}">Вина</a>
                                 </div>
                             <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'main:feedbacks' %}">Отзывы</a>
+                                <a class="nav-link" href="{% url 'main:feedback-list' %}">Отзывы</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="team/">Повара</a>
+                                <a class="nav-link" href="{% url 'teams:teams' %}">Повара</a>
                             </li>
                             </li>
                         </div>
@@ -126,12 +126,12 @@
                         <div class="d-flex flex-lg-row flex-column">
                             {% if user.is_authenticated %}
                             <li class="nav-item active">
-                                <a class="nav-link" href="">Мои Брони<span
+                                <a class="nav-link" href="{% url 'reservation:reservation' %}">Мои Брони<span
                                         class="sr-only">(current)</span></a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="">Забронировать<span
+                                <a class="nav-link" href="{% url 'reservation:create_reservation' %}">Забронировать<span
                                         class="sr-only">(current)</span></a>
                             </li>
 
@@ -166,9 +166,7 @@
                     <div class="col-lg-4">
                         <div class="footer-widget pr-lg-5 pr-0">
                             <img src="{% static 'img/logo.png' %}" class="img-fluid footer-logo mb-3" alt="Main Logo">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et obcaecati quisquam id sit
-                                omnis explicabo voluptate aut placeat, soluta, nisi ea magni facere, itaque incidunt
-                                modi? Magni, et voluptatum dolorem.</p>
+                            <p>«Resto» – это больше, чем ресторан с вкусной кухней, приятными ценами и хорошим обслуживанием. Ресторан «Resto» – это место, где можно отдохнуть душой и обрести ту самую внутреннюю гармонию, которой многим не хватает в современном мире.</p>
                             <nav class="nav nav-mastfoot justify-content-start">
                                 <a class="nav-link" href="#">
                                     <i class="fab fa-facebook-f"></i>
@@ -208,7 +206,7 @@
                     <div class="col-lg-4">
                         <div class="footer-widget pl-lg-5 pl-0">
                             <h4>Newsletter</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <p>Ваши пожелания.</p>
                             <form id="newsletter">
                                 <div class="form-group">
                                     <input type="email" class="form-control" id="emailNewsletter"

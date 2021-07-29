@@ -113,7 +113,7 @@
                             <div class="modal-header">
                                 <h2 class="mx-auto">Sign Up</h2>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body text-center">
                                 <form method="POST">
                                     {% csrf_token %}
                                     {% for field2 in reg_form %}
@@ -124,9 +124,11 @@
                                         {{ field2 }}
                                     </div>
                                     {% endfor %}
+
                                     <div class="modal-footer justify-content-center">
-                                        <button type="submit" class="btn btn-info" name="submit" value="signup">Sign
-                                            Up</button>
+                                        <button type="submit" class="btn btn-info">
+                                            Sign Up
+                                        </button>
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Quit</button>
                                     </div>
                                 </form>

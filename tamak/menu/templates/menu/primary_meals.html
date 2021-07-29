@@ -1,0 +1,135 @@
+{% extends 'main/wrapper.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+<section id="gtco-special-dishes" class="bg-grey section-padding">
+    <div class="container">
+        <div class="section-content">
+            <div class="heading-section text-center">
+                <h2>
+                    <span class="subheading">
+                        Фирменные блюда
+                    </span>
+                </h2>
+            </div>
+
+            <div class="row mt-5">
+                {% for meal in primarymeal_list %}
+                <div class="col-lg-4 offset-lg-2 col-md-6 mx-auto align-self-center mt-4 mt-md-0">
+                    <img src="{% static meal.image %}" alt="photo" class="img-fluid shadow w-100">
+                    <h2 class="special-number">0.</h2>
+                    <div class="dishes-text">
+                        <h3><span>{{ meal.name }}</span><br></h3>
+                        <p class="pt-3">Оценка: {{ meal.mark }} из 5 </p>
+                        <h3 class="special-dishes-price">{{ meal.price }} сом</h3>
+                        <a class="btn btn-outline-dark" href="{% url 'menu:meals-detail' meal.pk %}">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="gtco-menu" class="section-padding">
+    <div class="container">
+        <div class="section-content">
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="heading-section text-center">
+                        <h2>
+                            <span class="subheading">
+                                Основное меню
+                            </span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <div class="menu-wrap">
+                    <div class="heading-menu">
+                        <h3 class="text-center mb-5">Завтраки</h3>
+                    </div>
+                    {% for breakfast_s in breakfast %}
+                    <div class="menus d-flex align-items-center">
+                        <div class="menu-img rounded-circle">
+                            <img class="img-fluid" src="{% static breakfast_s.image %}" alt="">
+                        </div>
+                        <div class="text-wrap mx-5">
+                            <div class="row align-items-start">
+                                <div class="col-8">
+                                    <h4>{{ breakfast_s.name }}</h4>
+                                </div>
+                                <div class="col-4">
+                                    <h4 class="text-muted menu-price">{{ breakfast_s.price }} сом</h4>
+                                </div>
+                            </div>
+                            <p>{{ breakfast_s.body }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row justify-content-around">
+                <div class="menu-wrap">
+                    <div class="heading-menu">
+                        <h3 class="text-center mb-5">Обеды</h3>
+                    </div>
+                    {% for lunch_s in lunch %}
+                    <div class="menus d-flex align-items-center">
+                        <div class="menu-img rounded-circle">
+                            <img class="img-fluid" src="{% static lunch_s.image %}" alt="">
+                        </div>
+                        <div class="text-wrap mx-5">
+                            <div class="row align-items-start">
+                                <div class="col-8">
+                                    <h4>{{ lunch_s.name }}</h4>
+                                </div>
+                                <div class="col-4">
+                                    <h4 class="text-muted menu-price">{{ lunch_s.price }} сом</h4>
+                                </div>
+                            </div>
+                            <p>{{ lunch_s.body }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row justify-content-around">
+                <div class="menu-wrap">
+                    <div class="heading-menu">
+                        <h3 class="text-center mb-5">Ужины</h3>
+                    </div>
+
+                    {% for dinner_s in dinner %}
+                    <div class="menus d-flex align-items-center">
+                        <div class="menu-img rounded-circle">
+                            <img class="img-fluid" src="{% static dinner_s.image %}" alt="">
+                        </div>
+                        <div class="text-wrap mx-5">
+                            <div class="row align-items-start">
+                                <div class="col-8">
+                                    <h4>{{ dinner_s.name }}</h4>
+                                </div>
+                                <div class="col-4">
+                                    <h4 class="text-muted menu-price">{{ dinner_s.price }} сом</h4>
+                                </div>
+                            </div>
+                            <p>{{ dinner_s.body }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

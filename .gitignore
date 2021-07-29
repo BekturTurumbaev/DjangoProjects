@@ -10,3 +10,9 @@ solution2/
 *.zip
 *.json
 *.sqlite3
+
+
+
+settings.py
+admin.py
+models.py

@@ -2,72 +2,76 @@
 {% load static %}
 {% block content%}
 
+
 <div class="container-fluid bg-fixed bg-white section-padding overlay"
-    style="background-image: url({% static 'img/login-bg.jpg' %});" height="1200px">
+    style="background-image: url({% static 'img/login-bg1.jpg' %});" height="900px">
     <div class="row justify-content-around">
-        <div class="section-content bg-white shadow py-5 text-center w-25">
-            <div class="heading-section">
-                <h2>
-                    <span class="subheading">
-                        Регистрация
-                    </span>
-                </h2>
+        <div class="col-lg-4 col-md-8 col-sm-8">
+            <div class="section-content bg-white shadow py-5 text-center">
+                <div class="heading-section">
+                    <h2>
+                        <span class="subheading">
+                            Регистрация
+                        </span>
+                    </h2>
+                </div>
+                <form method="POST" name="registration">
+                    {% csrf_token %}
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="form-group">
+                                {% if errors %}
+                                <div class="alert alert-danger my-2">
+                                    {% for e in errors %}
+                                    {{ e }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <strong class="ml-1">{{ form.username.label_tag }}</strong>
+                                <br>
+                                {{ form.username }}
+                            </div>
+
+                            <div class="form-group">
+                                <strong class="ml-1">{{ form.first_name.label_tag }}</strong>
+                                <br>
+                                {{ form.first_name }}
+                            </div>
+
+                            <div class="form-group">
+                                <strong class="ml-1">{{ form.last_name.label_tag }}</strong>
+                                <br>
+                                {{ form.last_name }}
+                            </div>
+
+                            <div class="form-group">
+                                <strong class="ml-1">{{ form.email.label_tag }}</strong>
+                                <br>
+                                {{ form.email }}
+                            </div>
+
+                            <div class="form-group">
+                                <strong class="ml-1">{{ form.password1.label_tag }}</strong>
+                                <br>
+                                {{ form.password1 }}
+                            </div>
+
+                            <div class="form-group">
+                                <strong class="ml-1">{{ form.password2.label_tag }}</strong>
+                                <br>
+                                {{ form.password2 }}
+                            </div>
+
+                            <br>
+                            <button class="btn btn-primary btn-shadow btn-lg" type="submit"
+                                name="submit">Зарегистрироваться</button>
+
+                        </div>
+                </form>
             </div>
-            <form method="POST" name="registration">
-                {% csrf_token %}
-                <div class="row justify-content-center">
-                    <div class="col-12">
-
-                        {% if errors %}
-                        <div class="alert alert-danger">
-                            {% for e in errors %}
-                            {{ e }}
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-
-                        <div class="form-group">
-                            <strong class="ml-1">{{ reg_form.username.label_tag }}</strong>
-                            <br>
-                            {{ reg_form.username }}
-                        </div>
-
-                        <div class="form-group">
-                            <strong class="ml-1">{{ reg_form.first_name.label_tag }}</strong>
-                            <br>
-                            {{ reg_form.first_name }}
-                        </div>
-
-                        <div class="form-group">
-                            <strong class="ml-1">{{ reg_form.last_name.label_tag }}</strong>
-                            <br>
-                            {{ reg_form.last_name }}
-                        </div>
-
-                        <div class="form-group">
-                            <strong class="ml-1">{{ reg_form.email.label_tag }}</strong>
-                            <br>
-                            {{ reg_form.email }}
-                        </div>
-
-                        <div class="form-group">
-                            <strong class="ml-1">{{ reg_form.password1.label_tag }}</strong>
-                            <br>
-                            {{ reg_form.password1 }}
-                        </div>
-
-                        <div class="form-group">
-                            <strong class="ml-1">{{ reg_form.password2.label_tag }}</strong>
-                            <br>
-                            {{ reg_form.password2 }}
-                        </div>
-
-                        <br>
-                        <button class="btn btn-primary btn-shadow btn-lg" type="submit"
-                            name="submit">Зарегистрироваться</button>
-
-                    </div>
-            </form>
         </div>
     </div>
 </div>
